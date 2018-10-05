@@ -1,0 +1,3 @@
+rootProject.name = 'CircleButton'
+
+include ':app'
