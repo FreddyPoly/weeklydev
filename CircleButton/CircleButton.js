@@ -3,6 +3,12 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity, Image, Animated} fro
 
 export default class CircleButton extends Component {
   opacityOptions = new Animated.Value(0);
+  origin = {
+    x: 25,
+    y: 25,
+  };
+  delayButtons = 200;
+  delaytBtwButtons = 50;
 
   constructor(props) {
     super(props);
@@ -15,32 +21,37 @@ export default class CircleButton extends Component {
   _PressButton = async () => {
     const anim = [];
 
+    const startAngle = 270;
+    const increm = 360 / this.state.buttons.length;
+
     // Construction de l'animation de la position des boutons
-    await this.state.buttons.forEach((button) => {
+    await this.state.buttons.forEach((button, i) => {
+      const angle = startAngle + increm * i;
+      const rad = angle * Math.PI / 180;
+
       anim.push(
         Animated.parallel([
           Animated.timing(
             button.x,
             {
-              toValue: 150,
-              duration: 500
+              toValue: this.origin.x + this.props.radius * Math.cos(rad),
+              duration: this.delayButtons
             }
           ),
           Animated.timing(
             button.y,
             {
-              toValue: 150,
-              duration: 500
+              toValue: this.origin.y + this.props.radius * Math.sin(rad),
+              duration: this.delayButtons
             }
           )
         ]),
-        Animated.delay(1000),
+        Animated.delay(this.delaytBtwButtons),
       );
     });
 
     Animated.parallel([
       Animated.sequence([
-        Animated.delay(300),
         Animated.timing(
           this.opacityOptions,
           {
@@ -57,8 +68,8 @@ export default class CircleButton extends Component {
     // Ajout d'une position à chaque option
     const tmp = this.props.options.map((prop) => ({
       ...prop,
-      x: new Animated.Value(25),
-      y: new Animated.Value(25),
+      x: new Animated.Value(this.origin.x),
+      y: new Animated.Value(this.origin.y),
     }));
 
     this.setState({buttons: tmp});

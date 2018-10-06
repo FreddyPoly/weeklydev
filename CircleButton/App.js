@@ -27,6 +27,16 @@ export default class App extends Component {
         icon: 'https://image.flaticon.com/icons/png/128/126/126474.png',
         action: null,
         color: 'pink',
+      },
+      {
+        icon: 'https://image.flaticon.com/icons/png/128/126/126490.png',
+        action: null,
+        color: 'orange',
+      },
+      {
+        icon: 'https://image.flaticon.com/icons/png/128/126/126474.png',
+        action: null,
+        color: 'pink',
       }],
     }
   }
@@ -38,7 +48,7 @@ export default class App extends Component {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <CircleButton options={this.state.options} />
+        <CircleButton options={this.state.options} radius={150} />
       </View>
     );
   }
