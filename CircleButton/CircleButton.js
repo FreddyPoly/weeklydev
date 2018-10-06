@@ -12,16 +12,45 @@ export default class CircleButton extends Component {
     }
   }
 
-  _PressButton = () => {
-    Animated.sequence([
-      Animated.timing(
-        this.opacityOptions,
-        {
-          toValue: 1,
-          duration: 100
-        }
-      ),
-     ]).start();
+  _PressButton = async () => {
+    const anim = [];
+
+    // Construction de l'animation de la position des boutons
+    await this.state.buttons.forEach((button) => {
+      anim.push(
+        Animated.parallel([
+          Animated.timing(
+            button.x,
+            {
+              toValue: 150,
+              duration: 500
+            }
+          ),
+          Animated.timing(
+            button.y,
+            {
+              toValue: 150,
+              duration: 500
+            }
+          )
+        ]),
+        Animated.delay(1000),
+      );
+    });
+
+    Animated.parallel([
+      Animated.sequence([
+        Animated.delay(300),
+        Animated.timing(
+          this.opacityOptions,
+          {
+            toValue: 1,
+            duration: 100
+          }
+        ),
+      ]),
+      Animated.sequence(anim),
+    ]).start();
   }
 
   componentDidMount = () => {
