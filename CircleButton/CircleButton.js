@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity, Image, Animated} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, Image, Animated} from 'react-native';
 
 export default class CircleButton extends Component {
   opacityOptions = new Animated.Value(0);
@@ -78,42 +78,44 @@ export default class CircleButton extends Component {
   render() {
     return (
       <View>
-        <TouchableOpacity
-          style={{
-            padding: 15,
-            backgroundColor: 'lightblue',
-            borderRadius: 60,
-            height: 120,
-            width: 120,
-          }}
+        <TouchableWithoutFeedback
           onPress={this._PressButton}>
           <View
             style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
+              padding: 15,
+              backgroundColor: 'lightblue',
+              borderRadius: 60,
+              height: 120,
+              width: 120,
             }}>
-            <Text>BOUTON</Text>
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text>BOUTON</Text>
 
-            {this.state.buttons.map((option, i) => (
-              <Animated.View
-                key={i}
-                style={{
-                  position: 'absolute',
-                  top: option.y,
-                  left: option.x,
-                  backgroundColor: option.color,
-                  padding: 10,
-                  borderRadius: 40,
-                  opacity: this.opacityOptions,
-                }}>
-                <Image
-                  style={{width: 20, height: 20}}
-                  source={{ uri: option.icon }} />
-                </Animated.View>
-            ))}
+              {this.state.buttons.map((option, i) => (
+                <Animated.View
+                  key={i}
+                  style={{
+                    position: 'absolute',
+                    top: option.y,
+                    left: option.x,
+                    backgroundColor: option.color,
+                    padding: 10,
+                    borderRadius: 40,
+                    opacity: this.opacityOptions,
+                  }}>
+                  <Image
+                    style={{width: 20, height: 20}}
+                    source={{ uri: option.icon }} />
+                  </Animated.View>
+              ))}
+            </View>
           </View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
