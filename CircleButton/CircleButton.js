@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Dimensions, Text, View, TouchableWithoutFeedback, 
 
 export default class CircleButton extends Component {
   buttonSize = 20;
+  buttonIconSize = new Animated.Value(54);
   opacityOptions = new Animated.Value(0);
   mainButtonSize = new Animated.Value(120);
   origin = {
@@ -125,27 +126,54 @@ export default class CircleButton extends Component {
 
   _animCloseMainButton = () => {
     return Animated.sequence([
-      Animated.timing(
-        this.mainButtonSize,
-        {
-          toValue: 140,
-          duration: this.speedMainButton + 50
-        }
-      ),
-      Animated.timing(
-        this.mainButtonSize,
-        {
-          toValue: 90,
-          duration: this.speedMainButton
-        }
-      ),
-      Animated.timing(
-        this.mainButtonSize,
-        {
-          toValue: 120,
-          duration: this.speedMainButton
-        }
-      )
+      Animated.parallel([
+        Animated.timing(
+          this.mainButtonSize,
+          {
+            toValue: 140,
+            duration: this.speedMainButton + 50
+          }
+        ),
+        Animated.timing(
+          this.buttonIconSize,
+          {
+            toValue: 66,
+            duration: this.speedMainButton + 50
+          }
+        )
+      ]),
+      Animated.parallel([
+        Animated.timing(
+          this.mainButtonSize,
+          {
+            toValue: 90,
+            duration: this.speedMainButton
+          }
+        ),
+        Animated.timing(
+          this.buttonIconSize,
+          {
+            toValue: 40,
+            duration: this.speedMainButton + 50
+          }
+        )
+      ]),
+      Animated.parallel([
+        Animated.timing(
+          this.mainButtonSize,
+          {
+            toValue: 120,
+            duration: this.speedMainButton
+          }
+        ),
+        Animated.timing(
+          this.buttonIconSize,
+          {
+            toValue: 54,
+            duration: this.speedMainButton + 50
+          }
+        )
+      ]),
     ]);
   }
 
@@ -247,27 +275,54 @@ export default class CircleButton extends Component {
 
   _animOpenMainButton = () => {
     return Animated.sequence([
-      Animated.timing(
-        this.mainButtonSize,
-        {
-          toValue: 90,
-          duration: this.speedMainButton
-        }
-      ),
-      Animated.timing(
-        this.mainButtonSize,
-        {
-          toValue: 140,
-          duration: this.speedMainButton
-        }
-      ),
-      Animated.timing(
-        this.mainButtonSize,
-        {
-          toValue: 120,
-          duration: this.speedMainButton
-        }
-      )
+      Animated.parallel([
+        Animated.timing(
+          this.mainButtonSize,
+          {
+            toValue: 90,
+            duration: this.speedMainButton
+          }
+        ),
+        Animated.timing(
+          this.buttonIconSize,
+          {
+            toValue: 48,
+            duration: this.speedMainButton
+          }
+        )
+      ]),
+      Animated.parallel([
+        Animated.timing(
+          this.mainButtonSize,
+          {
+            toValue: 140,
+            duration: this.speedMainButton
+          }
+        ),
+        Animated.timing(
+          this.buttonIconSize,
+          {
+            toValue: 66,
+            duration: this.speedMainButton
+          }
+        )
+      ]),
+      Animated.parallel([
+        Animated.timing(
+          this.mainButtonSize,
+          {
+            toValue: 120,
+            duration: this.speedMainButton
+          }
+        ),
+        Animated.timing(
+          this.buttonIconSize,
+          {
+            toValue: 54,
+            duration: this.speedMainButton
+          }
+        )
+      ]),
     ]);
   }
 
@@ -312,7 +367,7 @@ export default class CircleButton extends Component {
                   width: this.buttonSize,
                   height: this.buttonSize
                 }}
-                source={{ uri: option.icon }} />
+                source={option.icon} />
             </TouchableOpacity>
           </Animated.View>
         ))}
@@ -323,7 +378,7 @@ export default class CircleButton extends Component {
             style={{
               position: 'absolute',
               padding: 15,
-              backgroundColor: 'lightblue',
+              backgroundColor: '#0784DB',
               borderRadius: 800,
               height: this.mainButtonSize,
               width: this.mainButtonSize,
@@ -334,6 +389,12 @@ export default class CircleButton extends Component {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
+              <Animated.Image
+                style={{
+                  width: this.buttonIconSize,
+                  height: this.buttonIconSize,
+                }}
+                source={require('./assets/settings.png')} />
             </View>
           </Animated.View>
         </TouchableWithoutFeedback>

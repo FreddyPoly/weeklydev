@@ -10,34 +10,34 @@ export default class App extends Component {
     this.state = {
       number: '',
       options: [{
-        icon: 'https://image.flaticon.com/icons/png/128/126/126509.png',
+        icon: require('./assets/pencil.png'),
         action: () => this.setState({number: '1'}),
-        color: 'red',
+        color: '#dbc807',
       },
       {
-        icon: 'https://image.flaticon.com/icons/png/128/126/126516.png',
+        icon: require('./assets/paper-plane.png'),
         action: () => this.setState({number: '2'}),
-        color: 'purple',
+        color: '#07db5e',
       },
       {
-        icon: 'https://image.flaticon.com/icons/png/128/126/126490.png',
+        icon: require('./assets/pin.png'),
         action: () => this.setState({number: '3'}),
-        color: 'orange',
+        color: '#5e07db',
       },
       {
-        icon: 'https://image.flaticon.com/icons/png/128/126/126474.png',
+        icon: require('./assets/upload.png'),
         action: () => this.setState({number: '4'}),
-        color: 'pink',
+        color: '#db0784',
       },
       {
-        icon: 'https://image.flaticon.com/icons/png/128/126/126490.png',
+        icon: require('./assets/trash.png'),
         action: () => this.setState({number: '5'}),
-        color: 'orange',
+        color: '#db5e07',
       },
       {
-        icon: 'https://image.flaticon.com/icons/png/128/126/126474.png',
+        icon: require('./assets/floppy-disk.png'),
         action: () => this.setState({number: '6'}),
-        color: 'pink',
+        color: '#07dbc8',
       }],
     }
   }
@@ -48,6 +48,7 @@ export default class App extends Component {
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
+          backgroundColor: '#fffff',
         }}>
         <CircleButton options={this.state.options} radius={150} />
 
