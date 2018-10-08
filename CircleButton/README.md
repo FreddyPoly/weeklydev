@@ -4,6 +4,10 @@ Button design based on [@Cuberto's dribble shot](https://dribbble.com/shots/2934
 
 Project made with React Native @0.57.2
 
+#Result
+
+![Circle Button](https://media.giphy.com/media/1n3KSsc0TBJRoqBmmQ/giphy.gif)
+
 ##Set up
 
 Install dependencies
