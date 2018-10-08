@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, Image, Anima
 
 export default class CircleButton extends Component {
   opacityOptions = new Animated.Value(0);
+  mainButtonSize = new Animated.Value(120);
   origin = {
     x: 25,
     y: 25,
@@ -23,6 +24,9 @@ export default class CircleButton extends Component {
 
     const startAngle = 270;
     const increm = 360 / this.state.buttons.length;
+
+    // Animation du click du bouton
+    this._animMainButton();
 
     // Construction de l'animation de la position des boutons
     await this.state.buttons.forEach((button, i) => {
@@ -64,6 +68,32 @@ export default class CircleButton extends Component {
     ]).start();
   }
 
+  _animMainButton = () => {
+    Animated.sequence([
+      Animated.timing(
+        this.mainButtonSize,
+        {
+          toValue: 110,
+          duration: 200
+        }
+      ),
+      Animated.timing(
+        this.mainButtonSize,
+        {
+          toValue: 130,
+          duration: 200
+        }
+      ),
+      Animated.timing(
+        this.mainButtonSize,
+        {
+          toValue: 120,
+          duration: 200
+        }
+      )
+    ]).start();
+  }
+
   componentDidMount = () => {
     // Ajout d'une position à chaque option
     const tmp = this.props.options.map((prop) => ({
@@ -80,13 +110,13 @@ export default class CircleButton extends Component {
       <View>
         <TouchableWithoutFeedback
           onPress={this._PressButton}>
-          <View
+          <Animated.View
             style={{
               padding: 15,
               backgroundColor: 'lightblue',
-              borderRadius: 60,
-              height: 120,
-              width: 120,
+              borderRadius: 800,
+              height: this.mainButtonSize,
+              width: this.mainButtonSize,
             }}>
             <View
               style={{
@@ -114,7 +144,7 @@ export default class CircleButton extends Component {
                   </Animated.View>
               ))}
             </View>
-          </View>
+          </Animated.View>
         </TouchableWithoutFeedback>
       </View>
     );
