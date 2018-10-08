@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Dimensions, Text, View, TouchableWithoutFeedback, TouchableOpacity, Image, Animated} from 'react-native';
 
 export default class CircleButton extends Component {
-  buttonSize = 20;
+  buttonSize = 25;
   buttonIconSize = new Animated.Value(54);
   opacityOptions = new Animated.Value(0);
   mainButtonSize = new Animated.Value(120);
@@ -336,6 +336,14 @@ export default class CircleButton extends Component {
     }));
 
     this.setState({buttons: tmp});
+
+    setTimeout(() => {
+      this._PressButton();
+    }, 3000);
+
+    setTimeout(() => {
+      this._PressButton();
+    }, 5000);
   }
 
   render() {
