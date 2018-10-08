@@ -8,34 +8,35 @@ export default class App extends Component {
     super(props);
 
     this.state = {
+      number: '',
       options: [{
         icon: 'https://image.flaticon.com/icons/png/128/126/126509.png',
-        action: null,
+        action: () => this.setState({number: '1'}),
         color: 'red',
       },
       {
         icon: 'https://image.flaticon.com/icons/png/128/126/126516.png',
-        action: null,
+        action: () => this.setState({number: '2'}),
         color: 'purple',
       },
       {
         icon: 'https://image.flaticon.com/icons/png/128/126/126490.png',
-        action: null,
+        action: () => this.setState({number: '3'}),
         color: 'orange',
       },
       {
         icon: 'https://image.flaticon.com/icons/png/128/126/126474.png',
-        action: null,
+        action: () => this.setState({number: '4'}),
         color: 'pink',
       },
       {
         icon: 'https://image.flaticon.com/icons/png/128/126/126490.png',
-        action: null,
+        action: () => this.setState({number: '5'}),
         color: 'orange',
       },
       {
         icon: 'https://image.flaticon.com/icons/png/128/126/126474.png',
-        action: null,
+        action: () => this.setState({number: '6'}),
         color: 'pink',
       }],
     }
@@ -49,6 +50,8 @@ export default class App extends Component {
           justifyContent: 'center',
         }}>
         <CircleButton options={this.state.options} radius={150} />
+
+        <Text>Bouton {this.state.number}</Text>
       </View>
     );
   }

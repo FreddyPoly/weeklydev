@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Dimensions, Text, View, TouchableWithoutFeedback, Image, Animated} from 'react-native';
+import {Platform, StyleSheet, Dimensions, Text, View, TouchableWithoutFeedback, TouchableOpacity, Image, Animated} from 'react-native';
 
 export default class CircleButton extends Component {
   buttonSize = 20;
@@ -298,18 +298,23 @@ export default class CircleButton extends Component {
               position: 'absolute',
               top: option.y,
               left: option.x,
-              backgroundColor: option.color,
-              padding: 10,
-              borderRadius: 40,
               opacity: option.opacity,
             }}>
-            <Image
+            <TouchableOpacity
+              onPress={option.action}
               style={{
-                width: this.buttonSize,
-                height: this.buttonSize
-              }}
-              source={{ uri: option.icon }} />
-            </Animated.View>
+                backgroundColor: option.color,
+                padding: 10,
+                borderRadius: 40,
+              }}>
+              <Image
+                style={{
+                  width: this.buttonSize,
+                  height: this.buttonSize
+                }}
+                source={{ uri: option.icon }} />
+            </TouchableOpacity>
+          </Animated.View>
         ))}
 
         <TouchableWithoutFeedback
