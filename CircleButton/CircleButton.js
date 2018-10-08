@@ -361,6 +361,13 @@ export default class CircleButton extends Component {
                 backgroundColor: option.color,
                 padding: 10,
                 borderRadius: 40,
+                shadowColor: '#373737',
+                shadowOffset: {
+                  width: 1,
+                  height: 2
+                },
+                shadowOpacity: .5,
+                shadowRadius: 2,
               }}>
               <Image
                 style={{
@@ -382,6 +389,13 @@ export default class CircleButton extends Component {
               borderRadius: 800,
               height: this.mainButtonSize,
               width: this.mainButtonSize,
+              shadowColor: '#373737',
+              shadowOffset: {
+                width: 1,
+                height: 2
+              },
+              shadowOpacity: .5,
+              shadowRadius: 2,
             }}>
             <View
               style={{
