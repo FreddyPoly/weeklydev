@@ -59,20 +59,56 @@ export default class CircleButton extends Component {
               ),
             ]),
             // Position vers celle calculée sur le cercle de radius
-            Animated.timing(
-              button.x,
-              {
-                toValue: this.origin.x + this.props.radius * Math.cos(rad),
-                duration: this.delayButtons
-              }
-            ),
-            Animated.timing(
-              button.y,
-              {
-                toValue: this.origin.y + this.props.radius * Math.sin(rad),
-                duration: this.delayButtons
-              }
-            )
+            Animated.sequence([
+              Animated.parallel([
+                Animated.timing(
+                  button.x,
+                  {
+                    toValue: this.origin.x + (this.props.radius + 10) * Math.cos(rad),
+                    duration: this.delayButtons
+                  }
+                ),
+                Animated.timing(
+                  button.y,
+                  {
+                    toValue: this.origin.y + (this.props.radius + 10) * Math.sin(rad),
+                    duration: this.delayButtons
+                  }
+                )
+              ]),
+              Animated.parallel([
+                Animated.timing(
+                  button.x,
+                  {
+                    toValue: this.origin.x + (this.props.radius - 10) * Math.cos(rad),
+                    duration: this.delayButtons
+                  }
+                ),
+                Animated.timing(
+                  button.y,
+                  {
+                    toValue: this.origin.y + (this.props.radius - 10) * Math.sin(rad),
+                    duration: this.delayButtons
+                  }
+                )
+              ]),
+              Animated.parallel([
+                Animated.timing(
+                  button.x,
+                  {
+                    toValue: this.origin.x + this.props.radius * Math.cos(rad),
+                    duration: this.delayButtons
+                  }
+                ),
+                Animated.timing(
+                  button.y,
+                  {
+                    toValue: this.origin.y + this.props.radius * Math.sin(rad),
+                    duration: this.delayButtons
+                  }
+                )
+              ]),
+            ]),
           ]),
         ])
       );
