@@ -9,7 +9,7 @@ export default class CircleButton extends Component {
     y: 25,
   };
   delayButtons = 225;
-  delaytBtwButtons = 115;
+  delaytBtwButtons = 100;
 
   speedMainButton = 200;
 
@@ -18,20 +18,122 @@ export default class CircleButton extends Component {
 
     this.state = {
       buttons: [],
+      open: false,
     }
   }
 
   _PressButton = async () => {
+    if (!this.state.open) this._openButton();
+    else this._closeButton();
+
+    this.setState({open: !this.state.open});
+  }
+  
+  _closeButton = () => {
     Animated.parallel([
-      this._animMainButton(), // Animation taille du bouton
       Animated.sequence([
-        Animated.delay(250),  // Délai avant de commencer l'animation des boules
-        this._animButtons(),  // Animation des boules
+        this._animCloseButtons(),  // Animation des boules
       ])
     ]).start();
   }
 
-  _animButtons = () => {
+  _animCloseButtons = () => {
+    const anim = [];
+
+    const startAngle = 270;
+    const increm = 360 / this.state.buttons.length;
+
+    // Construction de l'animation de la position de chaque bouton
+    this.state.buttons.forEach((button, i) => {
+      const angle = startAngle + increm * i;
+      const rad = angle * Math.PI / 180;
+
+      anim.push(
+        Animated.sequence([
+          // Délai entre les animations de chaque bouton
+          Animated.delay(this.delaytBtwButtons + (i * this.delaytBtwButtons)),
+          Animated.parallel([
+            // Opacité descend vers 0 avec un délai pour que la boule apparraisse sur le chemoin et pas sur le bouton principal directement
+            Animated.sequence([
+              Animated.delay(400),
+              Animated.timing(
+                button.opacity,
+                {
+                  toValue: 0,
+                  duration: 150
+                }
+              ),
+            ]),
+            // Position vers celle calculée sur le cercle de radius
+            Animated.sequence([
+              Animated.parallel([
+                Animated.timing(
+                  button.x,
+                  {
+                    toValue: this.origin.x + (this.props.radius - 5) * Math.cos(rad),
+                    duration: 150
+                  }
+                ),
+                Animated.timing(
+                  button.y,
+                  {
+                    toValue: this.origin.y + (this.props.radius - 5) * Math.sin(rad),
+                    duration: 150
+                  }
+                )
+              ]),
+              Animated.parallel([
+                Animated.timing(
+                  button.x,
+                  {
+                    toValue: this.origin.x + (this.props.radius + 15) * Math.cos(rad),
+                    duration: 200
+                  }
+                ),
+                Animated.timing(
+                  button.y,
+                  {
+                    toValue: this.origin.y + (this.props.radius + 15) * Math.sin(rad),
+                    duration: 200
+                  }
+                )
+              ]),
+              Animated.parallel([
+                Animated.timing(
+                  button.x,
+                  {
+                    toValue: this.origin.x,
+                    duration: 250
+                  }
+                ),
+                Animated.timing(
+                  button.y,
+                  {
+                    toValue: this.origin.y,
+                    duration: 250
+                  }
+                )
+              ]),
+            ]),
+          ]),
+        ])
+      );
+    });
+
+    return Animated.parallel(anim);
+  }
+
+  _openButton = () => {
+    Animated.parallel([
+      this._animOpenMainButton(), // Animation taille du bouton
+      Animated.sequence([
+        Animated.delay(250),  // Délai avant de commencer l'animation des boules
+        this._animOpenButtons(),  // Animation des boules
+      ])
+    ]).start();
+  }
+
+  _animOpenButtons = () => {
     const anim = [];
 
     const startAngle = 270;
@@ -117,7 +219,7 @@ export default class CircleButton extends Component {
     return Animated.parallel(anim);
   }
 
-  _animMainButton = () => {
+  _animOpenMainButton = () => {
     return Animated.sequence([
       Animated.timing(
         this.mainButtonSize,
