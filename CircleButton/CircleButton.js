@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, Image, Animated} from 'react-native';
+import {Platform, StyleSheet, Dimensions, Text, View, TouchableWithoutFeedback, Image, Animated} from 'react-native';
 
 export default class CircleButton extends Component {
+  buttonSize = 20;
   opacityOptions = new Animated.Value(0);
   mainButtonSize = new Animated.Value(120);
   origin = {
-    x: 25,
-    y: 25,
+    x: - this.buttonSize,
+    y: Dimensions.get('window').height / 2 - this.buttonSize,
   };
   delayButtons = 225;
   delaytBtwButtons = 100;
@@ -31,9 +32,8 @@ export default class CircleButton extends Component {
   
   _closeButton = () => {
     Animated.parallel([
-      Animated.sequence([
-        this._animCloseButtons(),  // Animation des boules
-      ])
+      this._animCloseMainButton(),  // Animation du bouton
+      this._animCloseButtons(),  // Animation des boules
     ]).start();
   }
 
@@ -121,6 +121,32 @@ export default class CircleButton extends Component {
     });
 
     return Animated.parallel(anim);
+  }
+
+  _animCloseMainButton = () => {
+    return Animated.sequence([
+      Animated.timing(
+        this.mainButtonSize,
+        {
+          toValue: 140,
+          duration: this.speedMainButton + 50
+        }
+      ),
+      Animated.timing(
+        this.mainButtonSize,
+        {
+          toValue: 90,
+          duration: this.speedMainButton
+        }
+      ),
+      Animated.timing(
+        this.mainButtonSize,
+        {
+          toValue: 120,
+          duration: this.speedMainButton
+        }
+      )
+    ]);
   }
 
   _openButton = () => {
@@ -259,11 +285,17 @@ export default class CircleButton extends Component {
 
   render() {
     return (
-      <View>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
         <TouchableWithoutFeedback
           onPress={this._PressButton}>
           <Animated.View
             style={{
+              position: 'absolute',
               padding: 15,
               backgroundColor: 'lightblue',
               borderRadius: 800,
@@ -276,28 +308,30 @@ export default class CircleButton extends Component {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <Text>BOUTON</Text>
-
-              {this.state.buttons.map((option, i) => (
-                <Animated.View
-                  key={i}
-                  style={{
-                    position: 'absolute',
-                    top: option.y,
-                    left: option.x,
-                    backgroundColor: option.color,
-                    padding: 10,
-                    borderRadius: 40,
-                    opacity: option.opacity,
-                  }}>
-                  <Image
-                    style={{width: 20, height: 20}}
-                    source={{ uri: option.icon }} />
-                  </Animated.View>
-              ))}
             </View>
           </Animated.View>
         </TouchableWithoutFeedback>
+
+        {this.state.buttons.map((option, i) => (
+          <Animated.View
+            key={i}
+            style={{
+              position: 'absolute',
+              top: option.y,
+              left: option.x,
+              backgroundColor: option.color,
+              padding: 10,
+              borderRadius: 40,
+              opacity: option.opacity,
+            }}>
+            <Image
+              style={{
+                width: this.buttonSize,
+                height: this.buttonSize
+              }}
+              source={{ uri: option.icon }} />
+            </Animated.View>
+        ))}
       </View>
     );
   }
