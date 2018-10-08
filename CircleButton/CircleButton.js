@@ -291,27 +291,6 @@ export default class CircleButton extends Component {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <TouchableWithoutFeedback
-          onPress={this._PressButton}>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              padding: 15,
-              backgroundColor: 'lightblue',
-              borderRadius: 800,
-              height: this.mainButtonSize,
-              width: this.mainButtonSize,
-            }}>
-            <View
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-            </View>
-          </Animated.View>
-        </TouchableWithoutFeedback>
-
         {this.state.buttons.map((option, i) => (
           <Animated.View
             key={i}
@@ -332,6 +311,27 @@ export default class CircleButton extends Component {
               source={{ uri: option.icon }} />
             </Animated.View>
         ))}
+
+        <TouchableWithoutFeedback
+          onPress={this._PressButton}>
+          <Animated.View
+            style={{
+              position: 'absolute',
+              padding: 15,
+              backgroundColor: 'lightblue',
+              borderRadius: 800,
+              height: this.mainButtonSize,
+              width: this.mainButtonSize,
+            }}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+            </View>
+          </Animated.View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
