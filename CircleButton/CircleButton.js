@@ -2,18 +2,17 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Dimensions, Text, View, TouchableWithoutFeedback, TouchableOpacity, Image, Animated} from 'react-native';
 
 export default class CircleButton extends Component {
-  buttonSize = 25;
-  buttonIconSize = new Animated.Value(54);
+  buttonIconSize = new Animated.Value(this.props.mainButtonIconSize);
   opacityOptions = new Animated.Value(0);
-  mainButtonSize = new Animated.Value(120);
+  mainButtonSize = new Animated.Value(this.props.mainButtonRadius);
   origin = {
-    x: - this.buttonSize,
-    y: Dimensions.get('window').height / 2 - this.buttonSize,
+    x: - this.props.buttonsRadius,
+    y: Dimensions.get('window').height / 2 - this.props.buttonsRadius,
   };
-  delayButtons = 225;
-  delaytBtwButtons = 100;
+  delayButtons = this.props.timeAnimButtons;
+  delaytBtwButtons = this.props.delayBtwButtons;
 
-  speedMainButton = 200;
+  speedMainButton = this.props.timeAnimMainButton;
 
   constructor(props) {
     super(props);
@@ -61,7 +60,7 @@ export default class CircleButton extends Component {
                 button.opacity,
                 {
                   toValue: 0,
-                  duration: 150
+                  duration: this.delayButtons * 80 / 100,
                 }
               ),
             ]),
@@ -72,14 +71,14 @@ export default class CircleButton extends Component {
                   button.x,
                   {
                     toValue: this.origin.x + (this.props.radius - 5) * Math.cos(rad),
-                    duration: 150
+                    duration: this.delayButtons
                   }
                 ),
                 Animated.timing(
                   button.y,
                   {
                     toValue: this.origin.y + (this.props.radius - 5) * Math.sin(rad),
-                    duration: 150
+                    duration: this.delayButtons
                   }
                 )
               ]),
@@ -88,14 +87,14 @@ export default class CircleButton extends Component {
                   button.x,
                   {
                     toValue: this.origin.x + (this.props.radius + 15) * Math.cos(rad),
-                    duration: 200
+                    duration: this.delayButtons
                   }
                 ),
                 Animated.timing(
                   button.y,
                   {
                     toValue: this.origin.y + (this.props.radius + 15) * Math.sin(rad),
-                    duration: 200
+                    duration: this.delayButtons
                   }
                 )
               ]),
@@ -104,14 +103,14 @@ export default class CircleButton extends Component {
                   button.x,
                   {
                     toValue: this.origin.x,
-                    duration: 250
+                    duration: this.delayButtons
                   }
                 ),
                 Animated.timing(
                   button.y,
                   {
                     toValue: this.origin.y,
-                    duration: 250
+                    duration: this.delayButtons
                   }
                 )
               ]),
@@ -336,14 +335,6 @@ export default class CircleButton extends Component {
     }));
 
     this.setState({buttons: tmp});
-
-    setTimeout(() => {
-      this._PressButton();
-    }, 3000);
-
-    setTimeout(() => {
-      this._PressButton();
-    }, 5000);
   }
 
   render() {
@@ -379,8 +370,8 @@ export default class CircleButton extends Component {
               }}>
               <Image
                 style={{
-                  width: this.buttonSize,
-                  height: this.buttonSize
+                  width: this.props.buttonsRadius,
+                  height: this.props.buttonsRadius
                 }}
                 source={option.icon} />
             </TouchableOpacity>

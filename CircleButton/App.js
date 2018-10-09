@@ -50,7 +50,16 @@ export default class App extends Component {
           justifyContent: 'center',
           backgroundColor: '#fffff',
         }}>
-        <CircleButton options={this.state.options} radius={150} />
+        <CircleButton
+          options={this.state.options}
+          radius={150}
+          mainButtonRadius={120}
+          buttonsRadius={25}
+          mainButtonIconSize={54}
+
+          timeAnimButtons={225}
+          timeAnimMainButton={200}
+          delayBtwButtons={100} />
 
         <Text>Bouton {this.state.number}</Text>
       </View>
