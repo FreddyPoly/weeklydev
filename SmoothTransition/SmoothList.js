@@ -31,12 +31,21 @@ export default class SmoothList extends Component {
         label: 'Element 8',
         color: '#B0E1E2',
       }],
+      top: 0,
+      left: 0,
     }
+  }
+
+  _navigate = (event, item) => {
+    this.setState({ top: event.nativeEvent.pageY });
+    this.setState({ left: event.nativeEvent.pageX });
+
+    // this.props.navigation.navigate('SmoothDetail', { data: item });
   }
 
   _renderItem = ({item, index}) => (
     <TouchableWithoutFeedback
-      onPress={() => this.props.navigation.navigate('SmoothDetail', { data: item })}>
+      onPress={(e) => this._navigate(e, item)}>
       <View
         style={{
           flex: 1,
@@ -65,6 +74,9 @@ export default class SmoothList extends Component {
           keyExtractor={this._keyExtractor}
           data={this.state.list}
           renderItem={this._renderItem} />
+
+        <View
+          style={{ position: 'absolute', top: this.state.top, left: this.state.left, width: 5, height: 5, backgroundColor: 'black' }} />
       </View>
     );
   }
