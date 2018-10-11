@@ -9,7 +9,8 @@ export default class SmoothDetail extends Component {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <Text>DETAILS</Text>
+        <Text>DETAILS</Text>
+        <Text>{ this.props.navigation.state.params.data.label }</Text>
       </View>
     );
   }
