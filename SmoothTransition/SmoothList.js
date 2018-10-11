@@ -35,7 +35,8 @@ export default class SmoothList extends Component {
   }
 
   _renderItem = ({item, index}) => (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback
+      onPress={() => this.props.navigation.navigate('EventDetail', { data, enableButtons: this._enableButtons })}>
       <View
         style={{
           flex: 1,
