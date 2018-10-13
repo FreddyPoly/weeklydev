@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { StackNavigator } from 'react-navigation';
-import {View, Image, Dimensions} from 'react-native';
 
 import SmoothList from './SmoothList';
 import SmoothDetail from './SmoothDetail';
+import HeaderIcon from './HeaderIcon';
 
 const fade = (props) => {
   const {position, scene} = props
@@ -32,8 +32,8 @@ export const Root = StackNavigator({
     screen: SmoothDetail,
   }
 }, {
-  navigationOptions: () => ({
-    headerLeft: <Image source={require('./fonts/menu.png')} style={{marginLeft: 25, width: 25, height: 25, resizeMode: 'contain'}} />,
+  navigationOptions: ({navigation}) => ({
+    headerLeft: <HeaderIcon nav = {navigation} />,
   }),
   transitionConfig: () => ({
     screenInterpolator: (props) => {
