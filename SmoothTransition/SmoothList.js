@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, Dimensions, TouchableWithoutFeedback, Animated, Easing} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, Dimensions, TouchableWithoutFeedback, Animated, Easing, Image} from 'react-native';
 
 export default class SmoothList extends Component {
   transitionSize = new Animated.Value(0);
@@ -10,28 +10,44 @@ export default class SmoothList extends Component {
     this.state = {
       list: [{
         label: 'Element 1',
-        color: '#F44E3F',
+        color: '#dbc807',
+        name: 'Emilia Clarke',
+        picture: 'http://fr.web.img6.acsta.net/pictures/15/06/04/16/19/049773.jpg',
       }, {
         label: 'Element 2',
-        color: '#F8B945',
+        color: '#07db5e',
+        name: 'Kit Harington',
+        picture: 'https://parismatch.be/app/uploads/2017/10/9344885691_60164ea3d5_k-1100x715.jpg',
       }, {
         label: 'Element 3',
-        color: '#EA8C55',
+        color: '#5e07db',
+        name: 'Sophie Turner',
+        picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Sophie_Turner_by_Gage_Skidmore_3.jpg/220px-Sophie_Turner_by_Gage_Skidmore_3.jpg',
       }, {
         label: 'Element 4',
-        color: '#DC8A14',
+        color: '#db0784',
+        name: 'Peter Dinklage',
+        picture: 'http://www.gstatic.com/tv/thumb/persons/299302/299302_v9_ba.jpg',
       }, {
         label: 'Element 5',
-        color: '#FF8930',
+        color: '#db5e07',
+        name: 'Maisie Williams',
+        picture: 'http://www.geekgeneration.fr/wp-content/uploads/2016/04/Maisie-Williams-The-New-Mutants.jpg',
       }, {
         label: 'Element 6',
-        color: '#ABC6D0',
+        color: '#07dbc8',
+        name: 'Lena Headey',
+        picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Lena_Headey_Primetime_Emmy_Awards_2014.jpg/240px-Lena_Headey_Primetime_Emmy_Awards_2014.jpg',
       }, {
         label: 'Element 7',
         color: '#FBEFC4',
+        name: 'Nikolaj Coster-Waldau',
+        picture: 'https://www.lindbergmanagement.com/wp-content/uploads/2017/09/Nikolaj-Coster-Waldau-Portrait-copy.jpg',
       }, {
         label: 'Element 8',
         color: '#B0E1E2',
+        name: 'Gwendoline Christie',
+        picture: 'http://static1.purepeople.com/articles/3/24/81/43/@/3481309-gwendoline-christie-en-conference-de-pre-950x0-2.jpg',
       }],
       transitionColor: 'white',
       top: 0,
@@ -63,13 +79,44 @@ export default class SmoothList extends Component {
       <View
         style={{
           flex: 1,
+          flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: item.color,
           width: Dimensions.get('window').width,
-          height: 120
+          height: 100,
         }}>
-        <Text>{ item.label }</Text>
+        <View
+          style={{
+            flex: 1,
+            paddingLeft: 25,
+            paddingLRight: 25,
+          }}>
+          <Image
+            style = {{
+              width: 65,
+              height: 65,
+              borderRadius: 40,
+            }}
+            source = {{ uri: item.picture }} />
+        </View>
+
+        <View
+          style={{
+            flex: 3,
+            paddingLeft: 35,
+            paddingLRight: 35,
+          }}>
+          <Text
+            style={{
+              color: '#373737',
+              fontSize: 15,
+              fontFamily: 'Arimo-Regular',
+              fontWeight: '700',
+            }}>
+            { item.name.toUpperCase() }
+          </Text>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
