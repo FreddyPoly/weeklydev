@@ -33,7 +33,7 @@ export const Root = StackNavigator({
   }
 }, {
   navigationOptions: () => ({
-    headerLeft: <Image source={require('./fonts/menu.png')} style={{marginLeft: 10, width: 30, height: 30, resizeMode: 'contain'}} />,
+    headerLeft: <Image source={require('./fonts/menu.png')} style={{marginLeft: 25, width: 25, height: 25, resizeMode: 'contain'}} />,
   }),
   transitionConfig: () => ({
     screenInterpolator: (props) => {
