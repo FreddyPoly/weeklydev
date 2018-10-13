@@ -8,6 +8,7 @@ export default class SmoothDetail extends Component {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: this.props.navigation.state.params.data.color,
       }}>
         <Text>DETAILS</Text>
         <Text>{ this.props.navigation.state.params.data.label }</Text>
