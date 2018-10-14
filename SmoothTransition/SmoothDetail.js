@@ -10,7 +10,7 @@ export default class SmoothDetail extends Component {
       this.opacity,
       {
         toValue: 1,
-        duration: 550,
+        duration: 1550,
       }
     ).start();
   }
@@ -21,14 +21,7 @@ export default class SmoothDetail extends Component {
         this.opacity,
         {
           toValue: 0,
-          duration: 1550,
-        }
-      ),
-      Animated.timing(
-        this.backgroundSize,
-        {
-          toValue: 0,
-          duration: 1550,
+          duration: 550,
         }
       )
     ]).start(() => {
@@ -40,32 +33,14 @@ export default class SmoothDetail extends Component {
     return (
       <View style={{
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: this.props.navigation.state.params.data.color,
       }}>
-        <View
-          style={{
-            position: 'absolute',
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            top: Dimensions.get('window').height,
-            left: Dimensions.get('window').width / 2,
-          }}>
-          <Animated.View
-            style={{
-              position: 'absolute',
-              backgroundColor: this.props.navigation.state.params.data.color,
-              width: this.backgroundSize,
-              height: this.backgroundSize,
-              borderRadius: 2000,
-            }}>
-          </Animated.View>
-        </View>
-
         <Animated.View style={{
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: this.props.navigation.state.params.data.color,
           opacity: this.opacity,
         }}>
           <Text>DETAILS</Text>

@@ -76,7 +76,6 @@ export default class SmoothList extends Component {
       }
     ).start(() => {
       this.props.navigation.navigate('SmoothDetail', { data: item });
-      this.transitionSize.setValue(0);
     });
   }
 
