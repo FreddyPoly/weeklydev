@@ -3,7 +3,6 @@ import { StackNavigator } from 'react-navigation';
 
 import SmoothList from './SmoothList';
 import SmoothDetail from './SmoothDetail';
-import HeaderIcon from './HeaderIcon';
 
 const fade = (props) => {
   const {position, scene} = props
@@ -32,9 +31,7 @@ export const Root = StackNavigator({
     screen: SmoothDetail,
   }
 }, {
-  navigationOptions: ({navigation}) => ({
-    headerLeft: <HeaderIcon nav = {navigation} />,
-  }),
+  headerMode: 'none',
   transitionConfig: () => ({
     screenInterpolator: (props) => {
         return fade(props)

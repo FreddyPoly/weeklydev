@@ -4,48 +4,52 @@ import {Platform, StyleSheet, Text, View, FlatList, Dimensions, TouchableWithout
 export default class SmoothList extends Component {
   transitionSize = new Animated.Value(0);
 
+  firstColor = '#FCF7F8';
+  secondColor = '#5E7999';
+  thirdColor = '#3F4A9E';
+
   constructor(props) {
     super(props);
 
     this.state = {
       list: [{
         label: 'Element 1',
-        color: '#dbc807',
+        color: this.firstColor,
         name: 'Emilia Clarke',
         picture: 'http://fr.web.img6.acsta.net/pictures/15/06/04/16/19/049773.jpg',
       }, {
         label: 'Element 2',
-        color: '#07db5e',
+        color: this.secondColor,
         name: 'Kit Harington',
         picture: 'https://parismatch.be/app/uploads/2017/10/9344885691_60164ea3d5_k-1100x715.jpg',
       }, {
         label: 'Element 3',
-        color: '#5e07db',
+        color: this.thirdColor,
         name: 'Sophie Turner',
         picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Sophie_Turner_by_Gage_Skidmore_3.jpg/220px-Sophie_Turner_by_Gage_Skidmore_3.jpg',
       }, {
         label: 'Element 4',
-        color: '#db0784',
+        color: this.firstColor,
         name: 'Peter Dinklage',
         picture: 'http://www.gstatic.com/tv/thumb/persons/299302/299302_v9_ba.jpg',
       }, {
         label: 'Element 5',
-        color: '#db5e07',
+        color: this.secondColor,
         name: 'Maisie Williams',
         picture: 'http://www.geekgeneration.fr/wp-content/uploads/2016/04/Maisie-Williams-The-New-Mutants.jpg',
       }, {
         label: 'Element 6',
-        color: '#07dbc8',
+        color: this.thirdColor,
         name: 'Lena Headey',
         picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Lena_Headey_Primetime_Emmy_Awards_2014.jpg/240px-Lena_Headey_Primetime_Emmy_Awards_2014.jpg',
       }, {
         label: 'Element 7',
-        color: '#FBEFC4',
+        color: this.firstColor,
         name: 'Nikolaj Coster-Waldau',
         picture: 'https://www.lindbergmanagement.com/wp-content/uploads/2017/09/Nikolaj-Coster-Waldau-Portrait-copy.jpg',
       }, {
         label: 'Element 8',
-        color: '#B0E1E2',
+        color: this.secondColor,
         name: 'Gwendoline Christie',
         picture: 'http://static1.purepeople.com/articles/3/24/81/43/@/3481309-gwendoline-christie-en-conference-de-pre-950x0-2.jpg',
       }],
@@ -56,7 +60,9 @@ export default class SmoothList extends Component {
   }
 
   _navigate = (event, item) => {
-    this.setState({ top: event.nativeEvent.pageY });
+    const headerOffset = 0;
+
+    this.setState({ top: event.nativeEvent.pageY - headerOffset });
     this.setState({ left: event.nativeEvent.pageX });
     this.setState({ transitionColor: item.color });
 
@@ -70,6 +76,7 @@ export default class SmoothList extends Component {
       }
     ).start(() => {
       this.props.navigation.navigate('SmoothDetail', { data: item });
+      this.transitionSize.setValue(0);
     });
   }
 
@@ -94,9 +101,9 @@ export default class SmoothList extends Component {
           }}>
           <Image
             style = {{
-              width: 65,
-              height: 65,
-              borderRadius: 40,
+              width: 60,
+              height: 60,
+              borderRadius: 30,
             }}
             source = {{ uri: item.picture }} />
         </View>
@@ -152,7 +159,7 @@ export default class SmoothList extends Component {
               borderRadius: 2000,
             }}>
           </Animated.View>
-          </View>
+        </View>
       </View>
     );
   }
