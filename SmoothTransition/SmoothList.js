@@ -56,6 +56,7 @@ export default class SmoothList extends Component {
       transitionColor: 'white',
       top: 0,
       left: 0,
+      goToDetails: false,
     }
   }
 
@@ -75,7 +76,8 @@ export default class SmoothList extends Component {
         easing: Easing.sin,
       }
     ).start(() => {
-      this.props.navigation.navigate('SmoothDetail', { data: item });
+      this.props.navigation.navigate('SmoothDetail', { data: item, off: false });
+      this.setState({goToDetails: false});
     });
   }
 
@@ -128,6 +130,20 @@ export default class SmoothList extends Component {
   );
 
   _keyExtractor = item => item.label;
+
+  componentWillUpdate = (nextProps, nextState) => {
+    if (nextProps.navigation.state.params && !this.state.goToDetails) {
+      // Cercle de couleur
+      Animated.timing(
+        this.transitionSize,
+        {
+          toValue: 0,
+          duration: 1150,
+        }
+      ).start();
+      this.setState({goToDetails: true});
+    }
+  }
 
   render() {
     return (

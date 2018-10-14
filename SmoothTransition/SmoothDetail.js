@@ -25,7 +25,7 @@ export default class SmoothDetail extends Component {
         }
       )
     ]).start(() => {
-      this.props.navigation.navigate('SmoothList');
+      this.props.navigation.navigate('SmoothList', { off: true });
     });
   }
 
