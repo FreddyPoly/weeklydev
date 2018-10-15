@@ -7,9 +7,11 @@ export default class SmoothList extends Component {
   transitionSize = new Animated.Value(0);
   opacityContent = new Animated.Value(0);
 
-  firstColor = '#FCF7F8';
-  secondColor = '#5E7999';
-  thirdColor = '#3F4A9E';
+  firstColor = '#6AA86C';
+  secondColor = '#FCF7F8';
+  thirdColor = '#623796';
+
+  font = { '#6AA86C': 'white', '#FCF7F8': '#373737', '#623796': 'white' };
 
   constructor(props) {
     super(props);
@@ -18,43 +20,69 @@ export default class SmoothList extends Component {
       list: [{
         label: 'Element 1',
         color: this.firstColor,
+        font: this.font[this.firstColor],
         name: 'Emilia Clarke',
         picture: 'http://fr.web.img6.acsta.net/pictures/15/06/04/16/19/049773.jpg',
       }, {
         label: 'Element 2',
         color: this.secondColor,
+        font: this.font[this.secondColor],
         name: 'Kit Harington',
         picture: 'https://parismatch.be/app/uploads/2017/10/9344885691_60164ea3d5_k-1100x715.jpg',
       }, {
         label: 'Element 3',
         color: this.thirdColor,
+        font: this.font[this.thirdColor],
         name: 'Sophie Turner',
         picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Sophie_Turner_by_Gage_Skidmore_3.jpg/220px-Sophie_Turner_by_Gage_Skidmore_3.jpg',
       }, {
         label: 'Element 4',
         color: this.firstColor,
+        font: this.font[this.firstColor],
         name: 'Peter Dinklage',
         picture: 'http://www.gstatic.com/tv/thumb/persons/299302/299302_v9_ba.jpg',
       }, {
         label: 'Element 5',
         color: this.secondColor,
+        font: this.font[this.secondColor],
         name: 'Maisie Williams',
         picture: 'http://www.geekgeneration.fr/wp-content/uploads/2016/04/Maisie-Williams-The-New-Mutants.jpg',
       }, {
         label: 'Element 6',
         color: this.thirdColor,
+        font: this.font[this.thirdColor],
         name: 'Lena Headey',
         picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Lena_Headey_Primetime_Emmy_Awards_2014.jpg/240px-Lena_Headey_Primetime_Emmy_Awards_2014.jpg',
       }, {
         label: 'Element 7',
         color: this.firstColor,
+        font: this.font[this.firstColor],
         name: 'Nikolaj Coster-Waldau',
         picture: 'https://www.lindbergmanagement.com/wp-content/uploads/2017/09/Nikolaj-Coster-Waldau-Portrait-copy.jpg',
       }, {
         label: 'Element 8',
         color: this.secondColor,
+        font: this.font[this.secondColor],
         name: 'Gwendoline Christie',
         picture: 'http://static1.purepeople.com/articles/3/24/81/43/@/3481309-gwendoline-christie-en-conference-de-pre-950x0-2.jpg',
+      }, {
+        label: 'Element 9',
+        color: this.thirdColor,
+        font: this.font[this.thirdColor],
+        name: 'Sophie Turner',
+        picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Sophie_Turner_by_Gage_Skidmore_3.jpg/220px-Sophie_Turner_by_Gage_Skidmore_3.jpg',
+      }, {
+        label: 'Element 10',
+        color: this.firstColor,
+        font: this.font[this.firstColor],
+        name: 'Peter Dinklage',
+        picture: 'http://www.gstatic.com/tv/thumb/persons/299302/299302_v9_ba.jpg',
+      }, {
+        label: 'Element 11',
+        color: this.secondColor,
+        font: this.font[this.secondColor],
+        name: 'Maisie Williams',
+        picture: 'http://www.geekgeneration.fr/wp-content/uploads/2016/04/Maisie-Williams-The-New-Mutants.jpg',
       }],
       transitionColor: 'white',
       top: 0,
@@ -133,7 +161,7 @@ export default class SmoothList extends Component {
           alignItems: 'center',
           backgroundColor: item.color,
           width: Dimensions.get('window').width,
-          height: 100,
+          height: 115,
         }}>
         <View
           style={{
@@ -143,9 +171,9 @@ export default class SmoothList extends Component {
           }}>
           <Image
             style = {{
-              width: 60,
-              height: 60,
-              borderRadius: 30,
+              width: 50,
+              height: 50,
+              borderRadius: 25,
             }}
             source = {{ uri: item.picture }} />
         </View>
@@ -158,8 +186,8 @@ export default class SmoothList extends Component {
           }}>
           <Text
             style={{
-              color: '#373737',
-              fontSize: 15,
+              color: item.font,
+              fontSize: 14,
               fontFamily: 'Arimo-Regular',
               fontWeight: '700',
             }}>
