@@ -4,7 +4,7 @@ Project made with React Native @0.57.2
 
 #Result
 
-![Smooth Transition GIF](https://media.giphy.com/media/1n3KSsc0TBJRoqBmmQ/giphy.gif)
+![Smooth Transition GIF](https://media.giphy.com/media/NTyoXNg6yEy3TswZl7/giphy.gif)
 
 ##Set up
 
