@@ -106,13 +106,13 @@ export default class SmoothList extends Component {
       Animated.timing(
         this.transitionSize,
         {
-          toValue: Dimensions.get('window').height * 2,
+          toValue: (Dimensions.get('window').height * 2) + 150,
           duration: 500,
           easing: Easing.sin,
         }
       ),
       Animated.sequence([
-        Animated.delay(200),
+        Animated.delay(300),
         Animated.timing(
           this.opacityContent,
           {
