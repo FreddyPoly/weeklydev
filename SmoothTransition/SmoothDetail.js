@@ -2,31 +2,8 @@ import React, {Component} from 'react';
 import {Dimensions, StyleSheet, Text, View, Animated, TouchableOpacity, Image} from 'react-native';
 
 export default class SmoothDetail extends Component {
-  opacity = new Animated.Value(0);
-  backgroundSize = new Animated.Value((Dimensions.get('window').height * 2) + 150);
-
-  componentWillMount = () => {
-    Animated.timing(
-      this.opacity,
-      {
-        toValue: 1,
-        duration: 1550,
-      }
-    ).start();
-  }
-
   _navigate = () => {
-    Animated.parallel([
-      Animated.timing(
-        this.opacity,
-        {
-          toValue: 0,
-          duration: 550,
-        }
-      )
-    ]).start(() => {
-      this.props.navigation.navigate('SmoothList', { off: true });
-    });
+    this.props.goBack();
   }
 
   render() {
@@ -35,16 +12,19 @@ export default class SmoothDetail extends Component {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: this.props.navigation.state.params.data.color,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
       }}>
         <Animated.View style={{
           flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
-          opacity: this.opacity,
+          opacity: this.props.opacityContent,
         }}>
-          <Text>DETAILS</Text>
-          <Text>{ this.props.navigation.state.params.data.label }</Text>
+          <Text>{ this.props.data ? this.props.data.name : '' }</Text>
         </Animated.View>
 
         <TouchableOpacity

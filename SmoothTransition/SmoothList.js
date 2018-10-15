@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, FlatList, Dimensions, TouchableWithoutFeedback, Animated, Easing, Image} from 'react-native';
 
+import SmoothDetail from './SmoothDetail';
+
 export default class SmoothList extends Component {
   transitionSize = new Animated.Value(0);
+  opacityContent = new Animated.Value(0);
 
   firstColor = '#FCF7F8';
   secondColor = '#5E7999';
@@ -56,7 +59,8 @@ export default class SmoothList extends Component {
       transitionColor: 'white',
       top: 0,
       left: 0,
-      goToDetails: false,
+
+      itemActive: null,
     }
   }
 
@@ -67,17 +71,54 @@ export default class SmoothList extends Component {
     this.setState({ left: event.nativeEvent.pageX });
     this.setState({ transitionColor: item.color });
 
-    // Cercle de couleur
-    Animated.timing(
-      this.transitionSize,
-      {
-        toValue: Dimensions.get('window').height * 2,
-        duration: 550,
-        easing: Easing.sin,
-      }
-    ).start(() => {
-      this.props.navigation.navigate('SmoothDetail', { data: item, off: false });
-      this.setState({goToDetails: false});
+    this.setState({itemActive: item});
+
+    // Anim on
+    Animated.parallel([
+      Animated.timing(
+        this.transitionSize,
+        {
+          toValue: Dimensions.get('window').height * 2,
+          duration: 500,
+          easing: Easing.sin,
+        }
+      ),
+      Animated.sequence([
+        Animated.delay(200),
+        Animated.timing(
+          this.opacityContent,
+          {
+            toValue: 1,
+            duration: 200,
+          }
+        )
+      ]),
+    ]).start();
+  }
+
+  _goBack = () => {
+    // Anim off
+    Animated.parallel([
+      Animated.timing(
+        this.opacityContent,
+        {
+          toValue: 0,
+          duration: 250,
+          easing: Easing.sin,
+        }
+      ),
+      Animated.sequence([
+        Animated.delay(100),
+        Animated.timing(
+          this.transitionSize,
+          {
+            toValue: 0,
+            duration: 500,
+          }
+        )
+      ]),
+    ]).start(() => {
+      this.setState({itemActive: null});
     });
   }
 
@@ -131,20 +172,6 @@ export default class SmoothList extends Component {
 
   _keyExtractor = item => item.label;
 
-  componentWillUpdate = (nextProps, nextState) => {
-    if (nextProps.navigation.state.params && !this.state.goToDetails) {
-      // Cercle de couleur
-      Animated.timing(
-        this.transitionSize,
-        {
-          toValue: 0,
-          duration: 1150,
-        }
-      ).start();
-      this.setState({goToDetails: true});
-    }
-  }
-
   render() {
     return (
       <View style={{
@@ -175,6 +202,11 @@ export default class SmoothList extends Component {
             }}>
           </Animated.View>
         </View>
+
+        { this.state.itemActive ?
+          <SmoothDetail data={this.state.itemActive} goBack={this._goBack} opacityContent={this.opacityContent} />
+        :
+          null }
       </View>
     );
   }
