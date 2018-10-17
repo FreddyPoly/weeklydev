@@ -22,7 +22,7 @@ export default class App extends Component {
                 width: 300,
                 height: 300,
               }}
-              source = { require('./assets/beach.jpg') } />
+              source = { require('./assets/beach.png') } />
 
             <Text>Beach</Text>
           </View>
@@ -40,7 +40,7 @@ export default class App extends Component {
                 width: 300,
                 height: 300,
               }}
-              source = { require('./assets/mountain.jpg') } />
+              source = { require('./assets/mountain.png') } />
             <Text>Mountain</Text>
           </View>
 
@@ -57,7 +57,7 @@ export default class App extends Component {
               width: 300,
               height: 300,
             }}
-            source = { require('./assets/forest2.jpg') } />
+            source = { require('./assets/forest.png') } />
             <Text>Forest</Text>
           </View>
         </IndicatorViewPager>
