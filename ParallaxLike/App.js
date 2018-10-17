@@ -4,7 +4,6 @@ import {Platform, StyleSheet, Text, View, Image, Dimensions, Animated} from 'rea
 import {IndicatorViewPager} from 'rn-viewpager';
 
 export default class App extends Component {
-  posMainBeachTop = new Animated.Value((Dimensions.get('window').height / 2) - 150);
   posMainBeachLeft = new Animated.Value((Dimensions.get('window').width / 2) - 150);
 
   constructor(props) {
@@ -19,15 +18,37 @@ export default class App extends Component {
     // Cas initial pareil pour tous
     if (offset === 0) {
       await this.setState({lastOffset: offset});
+
+      Animated.timing(
+        this.posMainBeachLeft,
+        {
+          toValue: (Dimensions.get('window').width / 2) - 150,
+          duration: 100,
+        }
+      ).start();
       return;
     }
 
+    // Sens du scroll
     let swipeRight = false;
 
     if (offset > this.state.lastOffset) {
       swipeRight = true;
       await this.setState({lastOffset: offset});
     }
+
+    // Anim à lancer
+    const posCible = swipeRight ? (Dimensions.get('window').width / 2) - 200 : (Dimensions.get('window').width / 2) - 100;
+
+    const calculatedPos = posCible * offset;
+
+    Animated.timing(
+      this.posMainBeachLeft,
+      {
+        toValue: Math.min(calculatedPos, posCible),
+        duration: 100,
+      }
+    ).start();
   }
 
   render() {
@@ -44,7 +65,7 @@ export default class App extends Component {
             <Animated.Image
               style={{
                 position: 'absolute',
-                top: this.posMainBeachTop,
+                top: (Dimensions.get('window').height / 2) - 150,
                 left: this.posMainBeachLeft,
                 width: 300,
                 height: 300,
