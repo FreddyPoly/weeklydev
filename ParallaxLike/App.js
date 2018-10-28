@@ -4,8 +4,6 @@ import {Platform, StyleSheet, Text, View, Image, Dimensions, Animated} from 'rea
 import {IndicatorViewPager} from 'rn-viewpager';
 
 export default class App extends Component {
-  posMainBeachLeft = new Animated.Value((Dimensions.get('window').width / 2) - 150);
-
   constructor(props) {
     super(props);
 
@@ -62,11 +60,11 @@ export default class App extends Component {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-            <Animated.Image
+            <Image
               style={{
                 position: 'absolute',
                 top: (Dimensions.get('window').height / 2) - 150,
-                left: this.posMainBeachLeft,
+                left: (Dimensions.get('window').width / 2) - 150,
                 width: 300,
                 height: 300,
               }}
