@@ -3,12 +3,20 @@ import {Platform, StyleSheet, Text, View, Image, Dimensions, Animated} from 'rea
 
 import {IndicatorViewPager} from 'rn-viewpager';
 
+import Paris from './Paris';
+import London from './London';
+import NewYork from './NewYork';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       lastOffset: 0,
+
+      currentOffset: null,
+      currentPosition: null,
+      swipeDirection: null,
     }
   }
 
@@ -35,8 +43,12 @@ export default class App extends Component {
       await this.setState({lastOffset: offset});
     }
 
+    this.setState({currentOffset: offset});
+    this.setState({currentPosition: position});
+    this.setState({swipeDirection: swipeRight});
+
     // Anim à lancer
-    const posCible = swipeRight ? (Dimensions.get('window').width / 2) - 200 : (Dimensions.get('window').width / 2) - 100;
+    /* const posCible = swipeRight ? (Dimensions.get('window').width / 2) - 200 : (Dimensions.get('window').width / 2) - 100;
 
     const calculatedPos = posCible * offset;
 
@@ -46,7 +58,7 @@ export default class App extends Component {
         toValue: Math.min(calculatedPos, posCible),
         duration: 100,
       }
-    ).start();
+    ).start(); */
   }
 
   render() {
@@ -57,54 +69,29 @@ export default class App extends Component {
           onPageScroll={this._handleSwipe} >
           <View style={{
             flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
           }}>
-            <Image
-              style={{
-                position: 'absolute',
-                top: (Dimensions.get('window').height / 2) - 150,
-                left: (Dimensions.get('window').width / 2) - 150,
-                width: 300,
-                height: 300,
-              }}
-              source = { require('./assets/beach.png') } />
-
-            <Text>Beach</Text>
+            <Paris
+              offset={this.state.currentOffset}
+              position={this.state.currentPosition}
+              swipe={this.state.swipeDirection} />
           </View>
 
           <View style={{
             flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
           }}>
-            <Image
-              style={{
-                position: 'absolute',
-                top: (Dimensions.get('window').height / 2) - 150,
-                left: (Dimensions.get('window').width / 2) - 150,
-                width: 300,
-                height: 300,
-              }}
-              source = { require('./assets/mountain.png') } />
-            <Text>Mountain</Text>
+            <London
+              offset={this.state.currentOffset}
+              position={this.state.currentPosition}
+              swipe={this.state.swipeDirection} />
           </View>
 
           <View style={{
             flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
           }}>
-          <Image
-            style={{
-              position: 'absolute',
-              top: (Dimensions.get('window').height / 2) - 150,
-              left: (Dimensions.get('window').width / 2) - 150,
-              width: 300,
-              height: 300,
-            }}
-            source = { require('./assets/forest.png') } />
-            <Text>Forest</Text>
+            <NewYork
+              offset={this.state.currentOffset}
+              position={this.state.currentPosition}
+              swipe={this.state.swipeDirection} />
           </View>
         </IndicatorViewPager>
       </View>
