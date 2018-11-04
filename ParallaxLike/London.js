@@ -16,12 +16,12 @@ export default class London extends Component {
     }
   }
 
-  l_top = new Animated.Value(100);
-  o_top = new Animated.Value(108);
-  n_top = new Animated.Value(105);
-  d_top = new Animated.Value(101);
-  oo_top = new Animated.Value(99);
-  nn_top = new Animated.Value(99);
+  l_top = new Animated.Value(-200);
+  o_top = new Animated.Value(-208);
+  n_top = new Animated.Value(-205);
+  d_top = new Animated.Value(-201);
+  oo_top = new Animated.Value(-209);
+  nn_top = new Animated.Value(-209);
 
   componentDidUpdate = (nextProps, nextState) => {
     let off = nextProps.position === 1 ? 1 - nextProps.offset: nextProps.offset;
