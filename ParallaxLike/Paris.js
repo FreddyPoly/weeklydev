@@ -26,7 +26,6 @@ export default class Paris extends Component {
   }
 
   componentWillUpdate = (nextProps, nextState) => {
-    console.log(`width: ${Dimensions.get('window').width} / ${(Dimensions.get('window').width - 100) / 7}`);
     const totalP = nextProps.offset * 300;
     this.p_top.setValue(100 - totalP);
 
