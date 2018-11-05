@@ -7,6 +7,8 @@ import Paris from './Paris';
 import London from './London';
 import NewYork from './NewYork';
 
+import rusty from './assets/rusty.png';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +21,9 @@ export default class App extends Component {
       swipeDirection: null,
     }
   }
+
+  spinValueRight = new Animated.Value(.34);
+  spinValueLeft = new Animated.Value(.74);
 
   _handleSwipe = async ({offset, position }) => {
     // Cas initial pareil pour tous
@@ -46,22 +51,23 @@ export default class App extends Component {
     this.setState({currentOffset: offset});
     this.setState({currentPosition: position});
     this.setState({swipeDirection: swipeRight});
+  }
 
-    // Anim à lancer
-    /* const posCible = swipeRight ? (Dimensions.get('window').width / 2) - 200 : (Dimensions.get('window').width / 2) - 100;
-
-    const calculatedPos = posCible * offset;
-
-    Animated.timing(
-      this.posMainBeachLeft,
-      {
-        toValue: Math.min(calculatedPos, posCible),
-        duration: 100,
-      }
-    ).start(); */
+  componentWillUpdate = (nextProps, nextState) => {
+    this.spinValueRight.setValue(nextState.currentPosition === 0 ? nextState.currentOffset * .5 : .5 + (nextState.currentOffset * .5));
+    this.spinValueLeft.setValue(nextState.currentPosition === 0 ? nextState.currentOffset * .5 : .5 + (nextState.currentOffset * .5));
   }
 
   render() {
+    const spinRight = this.spinValueRight.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '270deg']
+    });
+    const spinLeft = this.spinValueLeft.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    });
+
     return (
       <View style={{ flex: 1 }}>
         <IndicatorViewPager
@@ -94,6 +100,30 @@ export default class App extends Component {
               swipe={this.state.swipeDirection} />
           </View>
         </IndicatorViewPager>
+
+        <Animated.Image
+          style={{
+            width: 300,
+            height: 300,
+            resizeMode: 'contain',
+            position: 'absolute',
+            bottom: -150,
+            left: -145,
+            transform: [{rotate: spinLeft}]
+          }}
+          source = { rusty } />
+
+          <Animated.Image
+          style={{
+            width: 225,
+            height: 225,
+            resizeMode: 'contain',
+            position: 'absolute',
+            bottom: -120,
+            right: -110,
+            transform: [{rotate: spinRight}]
+          }}
+          source = { rusty } />
       </View>
     );
   }
