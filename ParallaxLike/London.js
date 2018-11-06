@@ -60,7 +60,7 @@ export default class London extends Component {
       <View style={{ flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'lightblue' }}>
+        backgroundColor: '#599f7f' }}>
         <Animated.Image
           style={{
             width: 230,

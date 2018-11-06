@@ -63,7 +63,7 @@ export default class NewYork extends Component {
       <View style={{ flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'lightblue' }}>
+        backgroundColor: '#7f599f' }}>
         <Animated.Image
           style={{
             width: 220,

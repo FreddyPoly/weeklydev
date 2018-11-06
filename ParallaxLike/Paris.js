@@ -57,7 +57,7 @@ export default class Paris extends Component {
       <View style={{ flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'lightblue' }}>
+        backgroundColor: '#7e6547' }}>
         <Animated.Image
           style={{
             width: 165,
