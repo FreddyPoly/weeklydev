@@ -6,6 +6,8 @@ import letterA from './assets/a.png';
 import letterR from './assets/paris-r.png';
 import letterI from './assets/paris-i.png';
 import letterS from './assets/paris-s.png';
+import eiffel from './assets/paris-eiffel.png';
+import triomphe from './assets/paris-triomphe.png';
 
 export default class Paris extends Component {
   constructor(props) {
@@ -20,6 +22,8 @@ export default class Paris extends Component {
   r_top = new Animated.Value(105);
   i_top = new Animated.Value(101);
   s_top = new Animated.Value(99);
+  eiffel_top = new Animated.Value(320);
+  triomphe_top = new Animated.Value(270);
 
   shouldComponentUpdate = (nextProps, nextState) => {
     return nextProps.position === 0;
@@ -40,6 +44,12 @@ export default class Paris extends Component {
 
     const totalS = nextProps.offset * 330;
     this.s_top.setValue(99 - totalS);
+
+    const totalEiffel = nextProps.offset * 350;
+    this.eiffel_top.setValue(320 - totalEiffel);
+
+    const totalTriomphe = nextProps.offset * 350;
+    this.triomphe_top.setValue(270 - totalTriomphe);
   }
 
   render() {
@@ -48,6 +58,30 @@ export default class Paris extends Component {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'lightblue' }}>
+        <Animated.Image
+          style={{
+            width: 165,
+            height: 165,
+            resizeMode: 'contain',
+            position: 'absolute',
+            top: this.eiffel_top,
+            left: 35,
+            transform: [{rotate: '-21deg'}]
+          }}
+          source = { triomphe } />
+
+        <Animated.Image
+          style={{
+            width: 275,
+            height: 275,
+            resizeMode: 'contain',
+            position: 'absolute',
+            top: this.eiffel_top,
+            left: 165,
+            transform: [{rotate: '17deg'}]
+          }}
+          source = { eiffel } />
+
         <Animated.Image
           style={{
             width: 60,
