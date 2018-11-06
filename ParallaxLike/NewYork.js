@@ -8,6 +8,8 @@ import letterY from './assets/newyork-y.png';
 import letterO from './assets/newyork-o.png';
 import letterR from './assets/newyork-r.png';
 import letterK from './assets/newyork-k.png';
+import empire from './assets/ny-empire.png';
+import liberty from './assets/ny-liberty.png';
 
 export default class NewYork extends Component {
   constructor(props) {
@@ -24,6 +26,8 @@ export default class NewYork extends Component {
   o_top = new Animated.Value(-201);
   r_top = new Animated.Value(-201);
   k_top = new Animated.Value(-201);
+  empire_top = new Animated.Value(-201);
+  liberty_top = new Animated.Value(-201);
 
   componentDidUpdate = (nextProps, nextState) => {
     const totalN = nextProps.offset * 300;
@@ -46,6 +50,12 @@ export default class NewYork extends Component {
 
     const totalK = nextProps.offset * 417;
     this.k_top.setValue(-209 + totalK);
+
+    const totalEmpire = nextProps.offset * 575;
+    this.empire_top.setValue(-209 + totalEmpire);
+
+    const totalLiberty = nextProps.offset * 555;
+    this.liberty_top.setValue(-209 + totalLiberty);
   }
 
   render() {
@@ -54,6 +64,30 @@ export default class NewYork extends Component {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'lightblue' }}>
+        <Animated.Image
+          style={{
+            width: 220,
+            height: 220,
+            resizeMode: 'contain',
+            position: 'absolute',
+            top: this.liberty_top,
+            left: 199,
+            transform: [{rotate: '32deg'}]
+          }}
+          source = { liberty } />
+
+        <Animated.Image
+          style={{
+            width: 260,
+            height: 260,
+            resizeMode: 'contain',
+            position: 'absolute',
+            top: this.empire_top,
+            left: 5,
+            transform: [{rotate: '-7deg'}]
+          }}
+          source = { empire } />
+
         <Animated.Image
           style={{
             width: 60,
