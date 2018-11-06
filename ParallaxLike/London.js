@@ -7,6 +7,8 @@ import letterN from './assets/london-n.png';
 import letterD from './assets/london-d.png';
 import letterOO from './assets/london-o.png';
 import letterNN from './assets/london-nn.png';
+import bus from './assets/london-bus.png';
+import bigben from './assets/london-bigben.png';
 
 export default class London extends Component {
   constructor(props) {
@@ -22,6 +24,8 @@ export default class London extends Component {
   d_top = new Animated.Value(-201);
   oo_top = new Animated.Value(-209);
   nn_top = new Animated.Value(-209);
+  bus_top = new Animated.Value(-209);
+  bigben_top = new Animated.Value(-209);
 
   componentDidUpdate = (nextProps, nextState) => {
     let off = nextProps.position === 1 ? 1 - nextProps.offset: nextProps.offset;
@@ -43,6 +47,12 @@ export default class London extends Component {
 
     const totalNN = off * 303;
     this.nn_top.setValue(-209 + totalNN);
+
+    const totalBus = off * 450;
+    this.bus_top.setValue(-209 + totalBus);
+
+    const totalBigben = off * 600;
+    this.bigben_top.setValue(-209 + totalBigben);
   }
 
   render() {
@@ -51,6 +61,30 @@ export default class London extends Component {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'lightblue' }}>
+        <Animated.Image
+          style={{
+            width: 230,
+            height: 230,
+            resizeMode: 'contain',
+            position: 'absolute',
+            top: this.bus_top,
+            left: 25,
+            transform: [{rotate: '-26deg'}]
+          }}
+          source = { bus } />
+
+        <Animated.Image
+          style={{
+            width: 190,
+            height: 190,
+            resizeMode: 'contain',
+            position: 'absolute',
+            top: this.bigben_top,
+            left: 245,
+            transform: [{rotate: '12deg'}]
+          }}
+          source = { bigben } />
+
         <Animated.Image
           style={{
             width: 60,
