@@ -9,3 +9,7 @@ These are components/experiences made with React Native.
 ## Week 2: Smooth Transition
 
 ![Smooth Transition GIF](https://media.giphy.com/media/NTyoXNg6yEy3TswZl7/giphy.gif)
+
+## Week 3: Parallax like
+
+![Parallax like GIF](https://media.giphy.com/media/lcMaZMCjXGjelgr0ep/giphy.gif)
