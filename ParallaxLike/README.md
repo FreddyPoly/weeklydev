@@ -6,6 +6,7 @@ Package `rn-viewpager` @1.2.9
 
 # Result
 
+![Parallax like effect GIF](https://gph.is/2APMuIN)
 
 ## Set up
 
