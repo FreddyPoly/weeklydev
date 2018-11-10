@@ -17,17 +17,7 @@ const App = DrawerNavigator({
 export const Root = StackNavigator({
     Root: {
         screen: App,
-        navigationOptions: ({navigation}) => ({
-            headerStyle: {
-                backgroundColor: '#2C3B37',
-                borderBottomWidth: 0,
-                shadowOpacity: 0,
-                shadowOffset: {
-                    height: 0,
-                },
-                shadowRadius: 0,
-                elevation: 0
-            },
-        })
     }
+}, {
+    headerMode: 'none',
 });
