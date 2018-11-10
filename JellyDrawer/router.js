@@ -7,17 +7,18 @@ import Main from './Main';
 import JellyDrawer from './JellyDrawer';
 
 const App = DrawerNavigator({
-    Accueil: {
-        screen: Main,
-    },
+  Accueil: {
+    screen: Main,
+  },
 }, {
   contentComponent: props => <JellyDrawer {...props} />,
+  drawerBackgroundColor: 'transparent',
 });
 
 export const Root = StackNavigator({
-    Root: {
-        screen: App,
-    }
+  Root: {
+    screen: App,
+  }
 }, {
-    headerMode: 'none',
+  headerMode: 'none',
 });

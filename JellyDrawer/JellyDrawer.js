@@ -10,7 +10,9 @@ export default class DrawerView extends Component {
     return (
       <View style={{
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: 'gold',
+        borderTopRightRadius: 20,
+        borderBottomRightRadius: 20,
       }}>
       </View>
     );
