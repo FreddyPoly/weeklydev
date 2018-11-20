@@ -14,28 +14,24 @@ export default class App extends Component {
         subtitle: 'Salaire',
         total: 300,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lobortis sed dui in semper. Ut ornare placerat malesuada. Aliquam erat volutpat. Maecenas vitae magna accumsan, vestibulum lorem ut, tristique leo. Donec fermentum pharetra nibh, sit amet suscipit ipsum condimentum at. Proin non mollis lacus, vel fringilla odio. Curabitur in porta urna. In sed sapien quis lorem tincidunt dictum. Suspendisse potenti.',
-        icon: 'https://image.flaticon.com/icons/png/128/138/138292.png',
         color: '#F79131',
       }, {
         title: 'Paiement 2',
         subtitle: 'Drogue',
         total: 10300,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lobortis sed dui in semper. Ut ornare placerat malesuada. Aliquam erat volutpat. Maecenas vitae magna accumsan, vestibulum lorem ut, tristique leo. Donec fermentum pharetra nibh, sit amet suscipit ipsum condimentum at. Proin non mollis lacus, vel fringilla odio. Curabitur in porta urna. In sed sapien quis lorem tincidunt dictum. Suspendisse potenti.',
-        icon: 'https://image.flaticon.com/icons/png/128/138/138292.png',
         color: '#009EDE',
       }, {
         title: 'Paiement 3',
         subtitle: 'Loyer',
         total: 80,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lobortis sed dui in semper. Ut ornare placerat malesuada. Aliquam erat volutpat. Maecenas vitae magna accumsan, vestibulum lorem ut, tristique leo. Donec fermentum pharetra nibh, sit amet suscipit ipsum condimentum at. Proin non mollis lacus, vel fringilla odio. Curabitur in porta urna. In sed sapien quis lorem tincidunt dictum. Suspendisse potenti.',
-        icon: 'https://image.flaticon.com/icons/png/128/138/138292.png',
         color: '#00AC65',
       }, {
         title: 'Paiement 4',
         subtitle: 'Poney aquatique',
         total: 666,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lobortis sed dui in semper. Ut ornare placerat malesuada. Aliquam erat volutpat. Maecenas vitae magna accumsan, vestibulum lorem ut, tristique leo. Donec fermentum pharetra nibh, sit amet suscipit ipsum condimentum at. Proin non mollis lacus, vel fringilla odio. Curabitur in porta urna. In sed sapien quis lorem tincidunt dictum. Suspendisse potenti.',
-        icon: 'https://image.flaticon.com/icons/png/128/138/138292.png',
         color: '#765BA7',
       }],
     }
