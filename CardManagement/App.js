@@ -8,6 +8,7 @@ export default class App extends Component {
     this.state = {
       title: 'WALLETS',
       subtitle: 'Check your earnings',
+      currentItem: null,
       item: [{
         title: 'Paiement 1',
         subtitle: 'Salaire',
@@ -41,16 +42,39 @@ export default class App extends Component {
   }
 
   opacityCards = new Animated.Value(1);
+  opacityCurrentCard = new Animated.Value(0);
+  topCurrentCard = new Animated.Value(Dimensions.get('window').height / 2);
 
   _selectCard = (item) => {
-    // Hide other cards
-    Animated.timing(
-      this.opacityCards,
-      {
-        toValue: 0,
-        duration: 200,
-      }
-    ).start();
+    this.setState({ currentItem: item });
+
+    // Hide cards
+    Animated.parallel([
+      // Hide main cards
+      Animated.timing(
+        this.opacityCards,
+        {
+          toValue: 0,
+          duration: 200,
+        }
+      ),
+      // Display hidden card
+      Animated.timing(
+        this.opacityCurrentCard,
+        {
+          toValue: 1,
+          duration: 300,
+        }
+      ),
+      // Positioning current card
+      Animated.timing(
+        this.topCurrentCard,
+        {
+          toValue: 0,
+          duration: 600,
+        }
+      ),
+    ]).start();
   }
 
   render() {
@@ -82,6 +106,28 @@ export default class App extends Component {
             </TouchableOpacity>
           ))}
         </ScrollView>
+
+        { this.state.currentItem ?
+          <Animated.View
+            style={{
+              position: 'absolute',
+              top: this.topCurrentCard,
+              width: Dimensions.get('window').width * .8,
+              height: 200,
+              backgroundColor: this.state.currentItem.color,
+              borderRadius: 8,
+              padding: 16,
+              opacity: this.opacityCurrentCard,
+            }}>
+            <Text style={{color: 'white', fontSize: 28, fontWeight: '700'}}>{ this.state.currentItem.title }</Text>
+            <Text style={{color: 'white', fontSize: 20}}>{ this.state.currentItem.subtitle }</Text>
+
+            <View style={{flex: 1, justifyContent: 'flex-end'}}>
+              <Text style={{color: 'white', fontSize: 36, fontWeight: '700', textAlign: 'right'}}>{ this.state.currentItem.total }€</Text>
+            </View>
+          </Animated.View>
+        :
+            null }
       </View>
     );
   }
