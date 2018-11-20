@@ -44,6 +44,8 @@ export default class App extends Component {
   opacityCards = new Animated.Value(1);
   opacityCurrentCard = new Animated.Value(0);
   topCurrentCard = new Animated.Value(Dimensions.get('window').height / 2);
+  widthCurrentCard = new Animated.Value(Dimensions.get('window').width * .8);
+  paddingCurrentCard = new Animated.Value(0);
 
   _selectCard = (item) => {
     this.setState({ currentItem: item });
@@ -71,6 +73,22 @@ export default class App extends Component {
         this.topCurrentCard,
         {
           toValue: 0,
+          duration: 600,
+        }
+      ),
+      // Width current card
+      Animated.timing(
+        this.widthCurrentCard,
+        {
+          toValue: Dimensions.get('window').width,
+          duration: 600,
+        }
+      ),
+      // Padding current card
+      Animated.timing(
+        this.paddingCurrentCard,
+        {
+          toValue: 35,
           duration: 600,
         }
       ),
@@ -112,14 +130,14 @@ export default class App extends Component {
             style={{
               position: 'absolute',
               top: this.topCurrentCard,
-              width: Dimensions.get('window').width * .8,
+              width: this.widthCurrentCard,
               height: 200,
               backgroundColor: this.state.currentItem.color,
               borderRadius: 8,
               padding: 16,
               opacity: this.opacityCurrentCard,
             }}>
-            <Text style={{color: 'white', fontSize: 28, fontWeight: '700'}}>{ this.state.currentItem.title }</Text>
+            <Animated.Text style={{color: 'white', fontSize: 28, fontWeight: '700', paddingTop: this.paddingCurrentCard}}>{ this.state.currentItem.title }</Animated.Text>
             <Text style={{color: 'white', fontSize: 20}}>{ this.state.currentItem.subtitle }</Text>
 
             <View style={{flex: 1, justifyContent: 'flex-end'}}>
