@@ -98,7 +98,7 @@ export default class App extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ScrollView style = {{ flex: 1 }} showsVerticalScrollIndicator={false}>
+        <ScrollView style = {{ flex: 1, paddingTop: 45 }} showsVerticalScrollIndicator={false}>
           {this.state.item.map((item) => (
             <TouchableOpacity
               key={item.title}
