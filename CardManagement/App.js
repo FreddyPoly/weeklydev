@@ -131,6 +131,7 @@ export default class App extends Component {
               </Animated.View>
             </TouchableOpacity>
           ))}
+          <View style={{height: 75}}></View>
         </ScrollView>
 
         { this.state.currentItem ?
