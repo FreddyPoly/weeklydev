@@ -42,6 +42,7 @@ export default class App extends Component {
   topCurrentCard = new Animated.Value(Dimensions.get('window').height / 2);
   widthCurrentCard = new Animated.Value(Dimensions.get('window').width * .8);
   paddingCurrentCard = new Animated.Value(0);
+  opacityTextCurrentCard = new Animated.Value(0);
 
   _selectCard = (item) => {
     this.setState({ currentItem: item });
@@ -88,6 +89,17 @@ export default class App extends Component {
           duration: 600,
         }
       ),
+      // Display text current card
+      Animated.sequence([
+        Animated.delay(500),
+        Animated.timing(
+          this.opacityTextCurrentCard,
+          {
+            toValue: 1,
+            duration: 200,
+          }
+        ),
+      ]),
     ]).start();
   }
 
@@ -129,7 +141,6 @@ export default class App extends Component {
               width: this.widthCurrentCard,
               height: 200,
               backgroundColor: this.state.currentItem.color,
-              borderRadius: 8,
               padding: 16,
               opacity: this.opacityCurrentCard,
             }}>
@@ -139,6 +150,21 @@ export default class App extends Component {
             <View style={{flex: 1, justifyContent: 'flex-end'}}>
               <Text style={{color: 'white', fontSize: 36, fontWeight: '700', textAlign: 'right'}}>{ this.state.currentItem.total }€</Text>
             </View>
+          </Animated.View>
+        :
+            null }
+
+        { this.state.currentItem ?
+          <Animated.View
+            style={{
+              position: 'absolute',
+              top: 235,
+              width: Dimensions.get('window').width * .8,
+              opacity: this.opacityTextCurrentCard,
+            }}>
+            <Text style={{fontSize: 24, fontWeight: '700', marginBottom: 25}}>DETAILS</Text>
+
+            <Text style={{fontSize: 18}}>{ this.state.currentItem.description }</Text>
           </Animated.View>
         :
             null }
