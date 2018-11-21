@@ -91,7 +91,7 @@ export default class App extends Component {
       ),
       // Display text current card
       Animated.sequence([
-        Animated.delay(500),
+        Animated.delay(300),
         Animated.timing(
           this.opacityTextCurrentCard,
           {
@@ -101,6 +101,38 @@ export default class App extends Component {
         ),
       ]),
     ]).start();
+  }
+
+  _close = () => {
+    // Hide cards
+    Animated.parallel([
+      // Display main cards
+      Animated.timing(
+        this.opacityCards,
+        {
+          toValue: 1,
+          duration: 200,
+        }
+      ),
+      // Hide hidden card
+      Animated.timing(
+        this.opacityCurrentCard,
+        {
+          toValue: 0,
+          duration: 300,
+        }
+      ),
+      // Hide text current card
+      Animated.timing(
+        this.opacityTextCurrentCard,
+        {
+          toValue: 0,
+          duration: 200,
+        }
+      ),
+    ]).start(() => {
+      this.setState({ currentItem: null });
+    });
   }
 
   render() {
@@ -151,6 +183,8 @@ export default class App extends Component {
             <View style={{flex: 1, justifyContent: 'flex-end'}}>
               <Text style={{color: 'white', fontSize: 36, fontWeight: '700', textAlign: 'right'}}>{ this.state.currentItem.total }€</Text>
             </View>
+
+            <TouchableOpacity onPress={this._close} style={{position: 'absolute', top: 50, right: 20}}><Text style={{color: 'white', fontWeight: '700', fontSize: 24}}>X</Text></TouchableOpacity>
           </Animated.View>
         :
             null }
