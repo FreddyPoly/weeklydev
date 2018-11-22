@@ -6,6 +6,8 @@ Project made with React Native @0.57.4
 
 # Result
 
+![Card management GIF](https://media.giphy.com/media/2vjWtKiMWsXxyfm6hH/giphy.gif)
+
 ## Set up
 
 Install dependencies

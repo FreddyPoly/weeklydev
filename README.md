@@ -13,3 +13,7 @@ These are components/experiences made with React Native.
 ## Week 3: Parallax like
 
 ![Parallax like GIF](https://media.giphy.com/media/lcMaZMCjXGjelgr0ep/giphy.gif)
+
+## Week 4: Card management
+
+![Card management GIF](https://media.giphy.com/media/2vjWtKiMWsXxyfm6hH/giphy.gif)
