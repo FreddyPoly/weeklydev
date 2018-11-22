@@ -70,7 +70,7 @@ export default class App extends Component {
         this.topCurrentCard,
         {
           toValue: 0,
-          duration: 600,
+          duration: 450,
         }
       ),
       // Width current card
@@ -78,7 +78,7 @@ export default class App extends Component {
         this.widthCurrentCard,
         {
           toValue: Dimensions.get('window').width,
-          duration: 600,
+          duration: 450,
         }
       ),
       // Padding current card
@@ -91,7 +91,7 @@ export default class App extends Component {
       ),
       // Display text current card
       Animated.sequence([
-        Animated.delay(300),
+        Animated.delay(400),
         Animated.timing(
           this.opacityTextCurrentCard,
           {
@@ -111,7 +111,7 @@ export default class App extends Component {
         this.opacityCards,
         {
           toValue: 1,
-          duration: 200,
+          duration: 300,
         }
       ),
       // Hide hidden card
@@ -128,6 +128,30 @@ export default class App extends Component {
         {
           toValue: 0,
           duration: 200,
+        }
+      ),
+      // Positioning current card
+      Animated.timing(
+        this.topCurrentCard,
+        {
+          toValue: Dimensions.get('window').height / 2,
+          duration: 600,
+        }
+      ),
+      // Width current card
+      Animated.timing(
+        this.widthCurrentCard,
+        {
+          toValue: Dimensions.get('window').width * .8,
+          duration: 600,
+        }
+      ),
+      // Padding current card
+      Animated.timing(
+        this.paddingCurrentCard,
+        {
+          toValue: 0,
+          duration: 600,
         }
       ),
     ]).start(() => {
